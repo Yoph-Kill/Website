@@ -32,10 +32,16 @@
 
         let topHost = header;
         let bottom = aiFooter;
+        let saveHost;
 
         if (page === 'ai.html') {
             bottom.classList.add('yoph-toolbar-bottom', 'yoph-ai-toolbar');
-            topHost = bottom;
+            const toolbarRow = document.createElement('div');
+            toolbarRow.className = 'yoph-ai-meta-row';
+            toolbarRow.setAttribute('aria-label', 'AI toolbar');
+            bottom.appendChild(toolbarRow);
+            topHost = toolbarRow;
+            saveHost = toolbarRow;
         } else {
             header.classList.add('yoph-toolbar-top');
             const isWord = page === 'word.html';
@@ -43,6 +49,7 @@
             bottom = existingNav || document.createElement('nav');
             bottom.classList.add('yoph-toolbar-bottom');
             if (!existingNav) header.after(bottom);
+            saveHost = bottom;
 
             const host = header.querySelector(':scope > div:last-child') || header;
             if (!isWord && host !== header) {
@@ -71,9 +78,7 @@
             actions.innerHTML = `
                 <div class="yoph-app-menu">
                     <button type="button" class="yoph-app-grid" aria-label="Open app selector" aria-expanded="false">
-                        <span class="yoph-grid" aria-hidden="true">
-                            <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
-                        </span>
+                        <span class="yoph-grid" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span>
                     </button>
                     <ul aria-label="Yoph app list"></ul>
                 </div>
@@ -91,11 +96,24 @@
                 item.innerHTML = `<a href="${href}" ${href === page ? 'aria-current="page"' : ''}>${label}</a>`;
                 list.appendChild(item);
             });
-            menu.querySelector('button').addEventListener('click', () => {
+            const menuButton = menu.querySelector('button');
+            menuButton.addEventListener('click', () => {
                 const open = menu.classList.toggle('open');
-                menu.querySelector('button').setAttribute('aria-expanded', String(open));
+                menuButton.setAttribute('aria-expanded', String(open));
             });
-            document.addEventListener('click', event => { if (!menu.contains(event.target)) menu.classList.remove('open'); });
+            document.addEventListener('click', event => {
+                if (!menu.contains(event.target)) {
+                    menu.classList.remove('open');
+                    menuButton.setAttribute('aria-expanded', 'false');
+                }
+            });
+            menu.addEventListener('keydown', event => {
+                if (event.key === 'Escape') {
+                    menu.classList.remove('open');
+                    menuButton.setAttribute('aria-expanded', 'false');
+                    menuButton.focus();
+                }
+            });
 
             const clearButton = actions.querySelector('.yoph-clear');
             if (clearButton) {
@@ -106,20 +124,26 @@
                         return;
                     }
                     if (!confirm('Clear editable content in this Yoph app?')) return;
-                    document.querySelectorAll('textarea, [contenteditable="true"]').forEach(el => { el.value = ''; el.innerHTML = ''; el.dispatchEvent(new Event('input', { bubbles: true })); });
-                    document.querySelectorAll('input[type="text"]:not([data-preserve-clear])').forEach(el => { if (!el.closest('.yoph-shared-actions')) el.value = ''; });
+                    document.querySelectorAll('textarea, [contenteditable="true"]').forEach(el => {
+                        if ('value' in el) el.value = '';
+                        el.innerHTML = '';
+                        el.dispatchEvent(new Event('input', { bubbles: true }));
+                    });
+                    document.querySelectorAll('input[type="text"]:not([data-preserve-clear])').forEach(el => {
+                        if (!el.closest('.yoph-shared-actions')) el.value = '';
+                    });
                     save();
                 });
             }
         }
 
-        if (!bottom.querySelector('.yoph-save-state')) {
+        if (!saveHost.querySelector('.yoph-save-state')) {
             const indicator = document.createElement('span');
             indicator.className = 'yoph-save-state is-saving';
             indicator.title = 'Saving';
             indicator.setAttribute('aria-label', 'Saving');
             indicator.innerHTML = '<span class="material-symbols-outlined" aria-hidden="true">progress_activity</span>';
-            bottom.appendChild(indicator);
+            saveHost.appendChild(indicator);
 
             const setState = (saving, label) => {
                 indicator.classList.toggle('is-saving', saving);
@@ -127,7 +151,11 @@
                 indicator.setAttribute('aria-label', label);
                 indicator.innerHTML = `<span class="material-symbols-outlined" aria-hidden="true">${saving ? 'progress_activity' : 'check'}</span>`;
             };
-            const markSaving = () => { setState(true, 'Saving'); clearTimeout(window.yophSaveStateTimer); window.yophSaveStateTimer = setTimeout(() => { save(); setState(false, 'Saved'); }, 350); };
+            const markSaving = () => {
+                setState(true, 'Saving');
+                clearTimeout(window.yophSaveStateTimer);
+                window.yophSaveStateTimer = setTimeout(() => { save(); setState(false, 'Saved'); }, 350);
+            };
             document.addEventListener('input', markSaving);
             document.addEventListener('change', markSaving);
             setTimeout(() => setState(false, 'Saved'), 500);
