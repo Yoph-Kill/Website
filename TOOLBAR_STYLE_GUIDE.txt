@@ -1,1134 +1,312 @@
-Yoph Tool Toolbar Style Guide
-=============================
-
-Scope
------
-This guide applies to every Yoph tool page, including AI. The home page uses the same shared app selector and visual tokens but does not need an editor toolbar.
-
-Core visual rules
------------------
-- Use a white top toolbar row and a light gray lower row (#E2E8F0) for all tool pages.
-- Keep toolbars flat, minimal, and aligned with square corners and 1px borders (#CBD5E1).
-- Keep the page title or document title on the far left of the top bar.
-- Keep the app selector in the shared action area at the far right of the top row or within the AI footer toolbar.
-- Keep the save state icon aligned at the far right of the bottom toolbar, without a visible text label.
-- Use the green accent (#059669) and darker green border (#047857) for primary actions only.
-
-Structure
----------
-- Prefer a two-row structure on tool pages when the page has a title and more than one action group.
-- The upper row holds title input, view toggles, file controls, and shared app actions.
-- The lower row holds the working controls for the tool itself, such as zoom, new item actions, or formatting groups.
-- If a tool has a dedicated lower control bar already, keep it visually consistent and let the shared Yoph shell wrap it in the light gray toolbar treatment.
-- Keep action groups aligned left-to-right with consistent spacing; avoid drifting controls or mismatched heights.
-- Maintain the same page selector on every tool page so navigation feels stable and predictable.
-
-Sizing and spacing
-------------------
-- Toolbar row minimum height: 40px (2.5rem).
-- All toolbar inputs, buttons, selects, and grouped controls: 32px high (2rem).
-- Toolbar vertical padding: 8px (0.5rem).
-- Toolbar horizontal padding: 12px (0.75rem).
-- Gap between toolbar controls: 4px (0.25rem) to 8px (0.5rem), depending on the group.
-- Use 1px borders with #CBD5E1 on white controls and light gray controls.
-- Use 1px category separators in #CBD5E1 on the lower light-gray row.
-- Keep controls aligned vertically inside the same row.
-- Use square corners; do not use rounded toolbar controls.
-- Keep focus outlines visible and use the shared green accent for keyboard focus.
-
-Text and controls
------------------
-- Toolbar text should be concise and live within the control itself. Remove standalone labels where possible.
-- Use the existing page action IDs so page behavior stays compatible.
-- Use the existing Paint trash-can icon for Clear and keep the shared clear action visually consistent.
-- The Apps control is a square grid button at the far right of the toolbar. It should remain consistent across all pages.
-- The save-state icon uses Material Symbols Outlined `check` when clean and `progress_activity` when actively saving.
-- The save-state icon stays 32px square, borderless, and has no visible text label.
-- If a tool already uses a custom action suite, do not replace its behavior; only normalize spacing, alignment, and visual weight.
-
-Responsive behavior
--------------------
-- At narrow widths, controls may wrap inside their row.
-- The title field may occupy a full row and use the available width.
-- Preserve the left/right anchoring priorities when controls wrap.
-- The page selector and save indicator should remain visible and correctly aligned, even in compact layouts.
-
-Implementation notes
---------------------
-- The shared Yoph shell is responsible for the app selector and save-state indicator across tool pages.
-- Each page may still keep its own tool-specific controls, but the surrounding shell should remain visually uniform and align button groups cleanly.
-- AI uses the same shared app selector and square save-state treatment, but it lives in the bottom footer toolbar instead of the top header.
-- The lower toolbar should remain light gray in all cases, including the AI page footer.
-
-Final rule
-----------
-The suite feels clean when every tool page shares the same shell: white top bar, light gray lower rail, consistent control sizing, square borders, and a single app selector that stays in place on every page.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-n
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-n
-
-
-
-
-
-
-
-
-
-a
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-n
-
-
-n
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-n
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-n
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-n
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-a
-
-
-
-
-
-
-
-
-
-
-n
-
-
-
-
-n
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-n
+@import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200');
+
+:root {
+    --yoph-ink: #1e293b;
+    --yoph-muted: #64748b;
+    --yoph-line: #cbd5e1;
+    --yoph-panel: #f1f5f9;
+    --yoph-toolbar: #e2e8f0;
+    --yoph-toolbar-strong: #e8edf3;
+    --yoph-accent: #059669;
+    --yoph-accent-strong: #047857;
+}
+
+html, body { min-width: 320px; font-family: Inter, system-ui, sans-serif !important; }
+body, button, input, textarea, select { font-family: Inter, system-ui, sans-serif; }
+button, input, textarea, select { font: inherit; }
+button:focus-visible, input:focus-visible, textarea:focus-visible, select:focus-visible, [contenteditable="true"]:focus-visible {
+    outline: 2px solid var(--yoph-accent);
+    outline-offset: 1px;
+}
+
+.yoph-toolbar-top,
+.yoph-toolbar-bottom,
+.yoph-ai-toolbar,
+.yoph-home header {
+    box-sizing: border-box;
+    width: 100%;
+    flex-shrink: 0;
+    gap: .5rem;
+    padding: .5rem .75rem !important;
+    border: 0 !important;
+    box-shadow: none !important;
+    border-radius: 0 !important;
+}
+
+.yoph-toolbar-top,
+.yoph-home header {
+    min-height: 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #fff !important;
+    color: var(--yoph-ink);
+    border-bottom: 1px solid var(--yoph-line) !important;
+}
+
+.yoph-toolbar-bottom,
+.yoph-ai-toolbar {
+    min-height: 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: var(--yoph-toolbar) !important;
+    color: var(--yoph-ink);
+    border-top: 1px solid var(--yoph-line) !important;
+    border-bottom: 1px solid var(--yoph-line) !important;
+}
+
+.yoph-tool-body { min-height: 100vh; display: flex; flex-direction: column; }
+.yoph-tool-body > #canvas-container, .yoph-tool-body > #view-container, .yoph-tool-body > main { flex: 1 1 auto; min-height: 0; }
+
+.yoph-toolbar-top button,
+.yoph-toolbar-top input,
+.yoph-toolbar-top select,
+.yoph-toolbar-bottom button,
+.yoph-toolbar-bottom input,
+.yoph-toolbar-bottom select,
+.yoph-ai-toolbar button,
+.yoph-ai-toolbar input {
+    height: 2rem !important;
+    min-height: 2rem !important;
+    box-sizing: border-box;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+}
+
+.yoph-toolbar-top button,
+.yoph-toolbar-bottom button,
+.yoph-ai-toolbar button {
+    background: #f8fafc;
+    border: 1px solid #cbd5e1;
+    color: var(--yoph-ink);
+    cursor: pointer;
+    transition: background-color .15s ease, border-color .15s ease, opacity .15s ease;
+}
+
+.yoph-toolbar-top button:hover,
+.yoph-toolbar-bottom button:hover,
+.yoph-ai-toolbar button:hover { background: #e2e8f0; }
+
+.yoph-toolbar-top .yoph-toolbar-controls,
+.yoph-toolbar-bottom .yoph-toolbar-controls,
+.yoph-ai-toolbar .yoph-toolbar-controls {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: .35rem;
+    flex-wrap: wrap;
+}
+
+.yoph-toolbar-bottom > .yoph-toolbar-controls,
+.yoph-ai-toolbar > .yoph-toolbar-controls {
+    margin-left: auto;
+}
+
+.yoph-toolbar-top > * + *,
+.yoph-toolbar-bottom > * + *,
+.yoph-ai-toolbar > * + * {
+    margin-left: .25rem;
+}
+
+.yoph-shared-actions {
+    display: inline-flex;
+    align-items: center;
+    gap: .35rem;
+    margin-left: .35rem;
+}
+
+.yoph-shared-actions button {
+    height: 2rem !important;
+    min-height: 2rem !important;
+    width: 2rem;
+    min-width: 2rem;
+    padding: 0 !important;
+    display: inline-grid;
+    place-items: center;
+    background: var(--yoph-toolbar-strong);
+    border: 1px solid var(--yoph-line);
+    color: var(--yoph-ink);
+    cursor: pointer;
+}
+
+.yoph-app-menu {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    margin-left: .1rem;
+}
+
+.yoph-app-menu > button {
+    width: 2rem !important;
+    height: 2rem !important;
+    display: grid;
+    place-items: center;
+    padding: 0 !important;
+    color: var(--yoph-ink);
+    background: var(--yoph-toolbar-strong);
+    border: 1px solid var(--yoph-line);
+    cursor: pointer;
+}
+
+.yoph-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 4px);
+    gap: 3px;
+}
+
+.yoph-grid i {
+    width: 4px;
+    height: 4px;
+    background: currentColor;
+    display: block;
+}
+
+.yoph-app-menu ul {
+    position: absolute;
+    right: 0;
+    top: calc(100% + .35rem);
+    z-index: 100;
+    display: none;
+    width: 190px;
+    margin: 0;
+    padding: .35rem;
+    list-style: none;
+    background: #fff;
+    border: 1px solid var(--yoph-line);
+    box-shadow: none;
+}
+
+.yoph-app-menu.open ul { display: block; }
+.yoph-ai .yoph-app-menu ul { top: auto; bottom: calc(100% + .35rem); }
+
+.yoph-app-menu a {
+    display: block;
+    padding: .55rem .65rem;
+    color: var(--yoph-ink);
+    text-decoration: none;
+    font-size: .78rem;
+}
+
+.yoph-app-menu a:hover,
+.yoph-app-menu a[aria-current="page"] {
+    background: var(--yoph-panel);
+}
+
+.yoph-save-state {
+    width: 2rem;
+    height: 2rem;
+    margin-left: auto;
+    display: grid;
+    place-items: center;
+    color: var(--yoph-ink);
+    background: transparent;
+    border: 0;
+    border-radius: 0;
+}
+
+.yoph-save-state .material-symbols-outlined { font-size: 1.35rem; line-height: 1; }
+.yoph-save-state.is-saving .material-symbols-outlined { animation: yoph-spin 1s linear infinite; }
+@keyframes yoph-spin { to { transform: rotate(360deg); } }
+
+.yoph-ai-toolbar {
+    position: relative;
+    background: #e2e8f0 !important;
+}
+
+.yoph-ai-toolbar > .yoph-shared-actions {
+    position: absolute;
+    top: .5rem;
+    right: .75rem;
+    z-index: 1;
+}
+
+.yoph-ai-toolbar > .yoph-save-state {
+    position: absolute;
+    top: .5rem;
+    right: 6.75rem;
+    z-index: 1;
+}
+
+.yoph-toolbar-bottom > .yoph-save-state,
+.yoph-ai-toolbar > .yoph-save-state {
+    margin-left: .35rem;
+}
+
+.yoph-app-menu button[aria-expanded="true"] + ul,
+.yoph-app-menu.open button + ul {
+    display: block;
+}
+
+@media (max-width: 720px) {
+    .yoph-toolbar-top,
+    .yoph-toolbar-bottom,
+    .yoph-ai-toolbar,
+    .yoph-home header {
+        padding-left: .5rem !important;
+        padding-right: .5rem !important;
+    }
+
+    .yoph-toolbar-top,
+    .yoph-toolbar-bottom,
+    .yoph-ai-toolbar {
+        justify-content: flex-start;
+    }
+
+    .yoph-toolbar-controls {
+        width: 100%;
+        justify-content: flex-start;
+    }
+
+    .yoph-ai-toolbar > .yoph-shared-actions,
+    .yoph-ai-toolbar > .yoph-save-state {
+        position: static;
+        margin-left: 0;
+    }
+}
+
+body .material-symbols-outlined {
+    font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+}
+
+button, .yoph-app-menu a {
+    -webkit-tap-highlight-color: transparent;
+}
+
+#prompt-input:focus,
+#calendar-title-input:focus,
+#board-title-input:focus,
+#timeline-title-input:focus,
+#doc-title-input:focus,
+#artwork-title-input:focus {
+    box-shadow: none;
+}
+
+#prompt-input, #calendar-title-input, #board-title-input, #timeline-title-input, #doc-title-input, #artwork-title-input {
+    border-radius: 0;
+}
+
+#btn-send {
+    background: var(--yoph-accent) !important;
+    border-color: var(--yoph-accent-strong) !important;
+}
+
+#btn-send:hover {
+    background: #10b981 !important;
+}
+
+.yoph-home { min-height: 100vh; margin: 0; background: #f8fafc; color: var(--yoph-ink); }
+.yoph-home header { display: flex; align-items: center; justify-content: space-between; padding: 1.1rem clamp(1rem, 4vw, 3rem); background: #fff; border-bottom: 1px solid var(--yoph-line); }
+.yoph-home h1 { margin: 0; font-size: 1.25rem; letter-spacing: -.02em; }
+.yoph-home main { width: min(920px, calc(100% - 2rem)); margin: 0 auto; padding: clamp(2.5rem, 8vw, 5rem) 0; }
+.yoph-home h2 { margin: 0 0 .45rem; font-size: clamp(1.7rem, 4vw, 2.5rem); letter-spacing: -.04em; }
+.yoph-home p { margin: 0 0 1.6rem; color: var(--yoph-muted); }
+.yoph-tools { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: .75rem; align-items: stretch; }
+.yoph-tool { display: flex; flex-direction: column; justify-content: center; min-height: 92px; padding: 1rem; color: inherit; text-decoration: none; background: #fff; border: 1px solid var(--yoph-line); }
+.yoph-tool:hover { border-color: var(--yoph-accent); }
+.yoph-tool strong { display: block; margin-bottom: .3rem; }
+.yoph-tool small { color: var(--yoph-muted); }
+
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+}

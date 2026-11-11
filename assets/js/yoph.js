@@ -32,6 +32,7 @@
 
         let topHost = header;
         let bottom = aiFooter;
+
         if (page === 'ai.html') {
             bottom.classList.add('yoph-toolbar-bottom', 'yoph-ai-toolbar');
             topHost = bottom;
@@ -59,13 +60,27 @@
                 header.appendChild(topControls);
                 bottom.appendChild(lowerControls);
             }
-            topHost = header.querySelector('.yoph-toolbar-controls') || header;
+
+            const rows = [...header.querySelectorAll('.yoph-toolbar-controls')];
+            topHost = rows.length ? rows[rows.length - 1] : header;
         }
 
         if (!topHost.querySelector('.yoph-shared-actions')) {
             const actions = document.createElement('span');
             actions.className = 'yoph-shared-actions';
-            actions.innerHTML = '<button type="button" class="yoph-clear" title="Clear"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg></button><span class="yoph-app-menu"><button type="button" aria-label="Open Yoph apps" aria-expanded="false"><span class="yoph-grid" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span></button><ul></ul></span>';
+            actions.innerHTML = `
+                <div class="yoph-app-menu">
+                    <button type="button" class="yoph-app-grid" aria-label="Open app selector" aria-expanded="false">
+                        <span class="yoph-grid" aria-hidden="true">
+                            <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+                        </span>
+                    </button>
+                    <ul aria-label="Yoph app list"></ul>
+                </div>
+                <button type="button" class="yoph-clear" title="Clear" aria-label="Clear current tool">
+                    <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.9-1.858L5.5 7M10 11v6M14 11v6M3 7h18M8 7l1-2h6l1 2" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                </button>
+            `;
             if (document.querySelector('#btn-clear-chat, #btn-clear')) actions.querySelector('.yoph-clear').remove();
             topHost.appendChild(actions);
 
