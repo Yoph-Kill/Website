@@ -1,0 +1,106 @@
+﻿
+        * {
+            box-sizing: border-box;
+            border-radius: 0 !important; /* Strict sharp flat styling per Yoph design specs */
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #ffffff;
+            color: #1e293b;
+            overflow: hidden;
+        }
+        /* Custom subtle scrollbars */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+        }
+        /* Prose styling for AI response markdown */
+        .prose p {
+            margin-bottom: 0.5rem;
+        }
+
+            .prose p:last-child {
+                margin-bottom: 0;
+            }
+
+        .prose ul {
+            list-style-type: disc;
+            padding-left: 1.25rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .prose ol {
+            list-style-type: decimal;
+            padding-left: 1.25rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .prose code {
+            background-color: #f1f5f9;
+            padding: 0.1rem 0.3rem;
+            font-size: 0.875em;
+            border: 1px solid #e2e8f0;
+            font-family: monospace;
+            word-break: break-word;
+        }
+
+        .prose pre {
+            background-color: #0f172a;
+            color: #f8fafc;
+            padding: 0.75rem;
+            overflow-x: auto;
+            margin-bottom: 0.5rem;
+            font-family: monospace;
+            max-width: 100%;
+            white-space: pre-wrap;
+            word-break: break-word;
+        }
+
+            .prose pre code {
+                background-color: transparent;
+                border: none;
+                color: inherit;
+                padding: 0;
+                white-space: pre-wrap;
+                word-break: break-word;
+            }
+
+        .prose a {
+            color: #2563eb;
+            text-decoration: underline;
+            word-break: break-all;
+        }
+
+        /* Table rendering fix to prevent horizontal blowout and misaligned text */
+        .prose table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 0.75rem;
+            font-size: 0.85rem;
+            display: block;
+            overflow-x: auto;
+            white-space: nowrap;
+        }
+
+        .prose th, .prose td {
+            border: 1px solid #cbd5e1;
+            padding: 0.4rem 0.6rem;
+            text-align: left;
+            max-width: 300px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: normal;
+            word-break: break-word;
+        }
+
+        .prose th {
+            background-color: #e2e8f0;
+            font-weight: 600;
+            color: #334155;
+        }
+    

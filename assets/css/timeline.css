@@ -1,0 +1,48 @@
+﻿
+        * {
+            box-sizing: border-box;
+            border-radius: 0 !important; /* Flat sharp styling per design requirements */
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            user-select: none;
+            background-color: #ffffff;
+            overflow: hidden;
+        }
+        /* Custom subtle scrollbars */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+        }
+        /* Crisp Dot Grid background pattern */
+        .timeline-grid {
+            background-color: #ffffff;
+            background-image: radial-gradient(#cbd5e1 1.2px, transparent 1.2px);
+            background-size: 24px 24px;
+        }
+
+        /* Smooth expanding animation styles for compact items */
+        .compact-event-wrapper {
+            transition: all 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .compact-event-wrapper .full-card-content {
+            opacity: 0;
+            max-width: 0px;
+            overflow: hidden;
+            transform: scale(0.85);
+            transition: all 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            white-space: nowrap;
+        }
+        .compact-event-wrapper:hover .full-card-content {
+            opacity: 1;
+            max-width: 320px;
+            transform: scale(1);
+            margin-left: 0.25rem;
+        }
+    

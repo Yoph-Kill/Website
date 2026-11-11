@@ -1,0 +1,32 @@
+﻿
+        * {
+            box-sizing: border-box;
+            border-radius: 0 !important; /* Sharp flat styling matching Yoph Suite */
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            user-select: none;
+            background-color: #ffffff;
+            overflow: hidden;
+        }
+        /* Custom subtle scrollbars */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+
+        .week-item.dragging {
+            opacity: 0.6;
+            cursor: grabbing !important;
+            z-index: 40 !important;
+        }
+    
