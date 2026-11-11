@@ -1,21 +1,41 @@
 @import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200');
 
-/* Shared Yoph interface layer */
 :root {
     --yoph-ink: #1e293b;
     --yoph-muted: #64748b;
     --yoph-line: #cbd5e1;
     --yoph-panel: #f1f5f9;
     --yoph-toolbar: #e2e8f0;
-    --yoph-toolbar-strong: #dfe7ef;
+    --yoph-toolbar-strong: #edf2f7;
     --yoph-accent: #059669;
     --yoph-accent-strong: #047857;
 }
 
-html, body { min-width: 320px; font-family: Inter, system-ui, sans-serif !important; }
-body, button, input, textarea, select { font-family: Inter, system-ui, sans-serif; }
-button, input, textarea, select { font: inherit; }
-button:focus-visible, input:focus-visible, textarea:focus-visible, select:focus-visible, [contenteditable="true"]:focus-visible {
+html, body {
+    min-width: 320px;
+    font-family: Inter, system-ui, sans-serif !important;
+}
+
+body,
+button,
+input,
+textarea,
+select {
+    font-family: Inter, system-ui, sans-serif;
+}
+
+button,
+input,
+textarea,
+select {
+    font: inherit;
+}
+
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible,
+[contenteditable="true"]:focus-visible {
     outline: 2px solid var(--yoph-accent);
     outline-offset: 1px;
 }
@@ -31,6 +51,7 @@ button:focus-visible, input:focus-visible, textarea:focus-visible, select:focus-
     padding: .5rem .75rem !important;
     border: 0 !important;
     box-shadow: none !important;
+    border-radius: 0 !important;
 }
 
 .yoph-toolbar-top,
@@ -56,10 +77,48 @@ button:focus-visible, input:focus-visible, textarea:focus-visible, select:focus-
     border-bottom: 1px solid var(--yoph-line) !important;
 }
 
-.yoph-toolbar-top > div:first-child,
-.yoph-toolbar-top > input:first-child,
-.yoph-toolbar-top > .yoph-toolbar-controls:first-child {
-    margin-right: auto;
+.yoph-tool-body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.yoph-tool-body > #canvas-container,
+.yoph-tool-body > #view-container,
+.yoph-tool-body > main {
+    flex: 1 1 auto;
+    min-height: 0;
+}
+
+.yoph-toolbar-top button,
+.yoph-toolbar-top input,
+.yoph-toolbar-top select,
+.yoph-toolbar-bottom button,
+.yoph-toolbar-bottom input,
+.yoph-toolbar-bottom select,
+.yoph-ai-toolbar button,
+.yoph-ai-toolbar input {
+    height: 2rem !important;
+    min-height: 2rem !important;
+    box-sizing: border-box;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+}
+
+.yoph-toolbar-top button,
+.yoph-toolbar-bottom button,
+.yoph-ai-toolbar button {
+    background: #f8fafc;
+    border: 1px solid var(--yoph-line);
+    color: var(--yoph-ink);
+    cursor: pointer;
+    transition: background-color .15s ease, border-color .15s ease, opacity .15s ease;
+}
+
+.yoph-toolbar-top button:hover,
+.yoph-toolbar-bottom button:hover,
+.yoph-ai-toolbar button:hover {
+    background: #e2e8f0;
 }
 
 .yoph-toolbar-controls {
@@ -70,42 +129,30 @@ button:focus-visible, input:focus-visible, textarea:focus-visible, select:focus-
     flex-wrap: wrap;
 }
 
+.yoph-toolbar-top > .yoph-toolbar-controls,
+.yoph-toolbar-bottom > .yoph-toolbar-controls,
+.yoph-ai-toolbar > .yoph-toolbar-controls {
+    align-items: center;
+}
+
 .yoph-toolbar-bottom > .yoph-toolbar-controls,
 .yoph-ai-toolbar > .yoph-toolbar-controls {
     margin-left: auto;
 }
 
-.yoph-tool-body { min-height: 100vh; display: flex; flex-direction: column; }
-.yoph-tool-body > #canvas-container, .yoph-tool-body > #view-container { flex: 1 1 auto; min-height: 0; }
-
-.yoph-toolbar-top button, .yoph-toolbar-top input, .yoph-toolbar-bottom button, .yoph-toolbar-bottom input,
-.yoph-toolbar-top select, .yoph-toolbar-bottom select,
-.yoph-ai-toolbar button, .yoph-ai-toolbar input { height: 2rem !important; min-height: 2rem !important; box-sizing: border-box; border-radius: 0 !important; box-shadow: none !important; }
-
-.yoph-toolbar-top button,
-.yoph-toolbar-bottom button,
-.yoph-ai-toolbar button {
-    background: #f8fafc;
-    border: 1px solid #cbd5e1;
-    color: var(--yoph-ink);
-    cursor: pointer;
-    transition: background-color .15s ease, border-color .15s ease, opacity .15s ease;
+.yoph-toolbar-top > * + *,
+.yoph-toolbar-bottom > * + *,
+.yoph-ai-toolbar > * + * {
+    margin-left: .25rem;
 }
 
-.yoph-toolbar-top button:hover,
-.yoph-toolbar-bottom button:hover,
-.yoph-ai-toolbar button:hover { background: #e2e8f0; }
-
-.yoph-toolbar-bottom .bg-emerald-600, .yoph-toolbar-bottom .bg-emerald-700,
-.yoph-ai-toolbar .bg-emerald-600, .yoph-ai-toolbar .bg-emerald-700 {
-    background: #059669 !important;
-    border-color: #047857 !important;
-    color: #fff !important;
+.yoph-toolbar-top .yoph-toolbar-controls > *,
+.yoph-toolbar-bottom .yoph-toolbar-controls > *,
+.yoph-ai-toolbar .yoph-toolbar-controls > * {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
 }
-
-.yoph-toolbar-bottom .h-5, .yoph-toolbar-bottom .h-6,
-.yoph-ai-toolbar .h-5, .yoph-ai-toolbar .h-6 {
-    height: 1.5rem; background: #cbd5e1 !important; margin: 0 .35rem; }
 
 .yoph-shared-actions {
     display: inline-flex;
@@ -128,79 +175,131 @@ button:focus-visible, input:focus-visible, textarea:focus-visible, select:focus-
     cursor: pointer;
 }
 
-.yoph-shared-actions button:hover { background: #dfe7ef; }
-.yoph-shared-actions svg { width: 1rem; height: 1rem; fill: none; stroke: currentColor; stroke-width: 2; }
+.yoph-shared-actions button:hover {
+    background: #dfe7ef;
+}
 
-.yoph-app-menu { position: relative; margin-left: .35rem; }
+.yoph-app-menu {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    margin-left: .1rem;
+}
+
 .yoph-app-menu > button {
-    width: 2rem !important; height: 2rem !important; display: grid; place-items: center;
+    width: 2rem !important;
+    height: 2rem !important;
+    display: grid;
+    place-items: center;
     padding: 0 !important;
-    color: var(--yoph-ink); background: var(--yoph-toolbar-strong); border: 1px solid var(--yoph-line);
+    color: var(--yoph-ink);
+    background: var(--yoph-toolbar-strong);
+    border: 1px solid var(--yoph-line);
     cursor: pointer;
 }
-.yoph-grid { display: grid; grid-template-columns: repeat(3, 4px); gap: 3px; }
-.yoph-grid i { width: 4px; height: 4px; background: currentColor; display: block; }
+
+.yoph-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 4px);
+    gap: 3px;
+}
+
+.yoph-grid i {
+    width: 4px;
+    height: 4px;
+    background: currentColor;
+    display: block;
+}
+
 .yoph-app-menu ul {
-    position: absolute; right: 0; top: calc(100% + .35rem); z-index: 100;
-    display: none; width: 190px; margin: 0; padding: .35rem;
-    list-style: none; background: #fff; border: 1px solid var(--yoph-line);
+    position: absolute;
+    right: 0;
+    top: calc(100% + .35rem);
+    z-index: 100;
+    display: none;
+    width: 190px;
+    margin: 0;
+    padding: .35rem;
+    list-style: none;
+    background: #fff;
+    border: 1px solid var(--yoph-line);
     box-shadow: none;
 }
-.yoph-app-menu.open ul { display: block; }
-.yoph-home .yoph-app-menu { margin-top: 0; }
-.yoph-home .yoph-app-menu ul { top: calc(100% + .35rem); }
-.yoph-home .yoph-app-menu:hover ul { display: block; }
-.yoph-ai .yoph-app-menu ul { top: auto; bottom: calc(100% + .35rem); }
-.yoph-app-menu a { display: block; padding: .55rem .65rem; color: var(--yoph-ink); text-decoration: none; font-size: .78rem; }
-.yoph-app-menu a:hover, .yoph-app-menu a[aria-current="page"] { background: var(--yoph-panel); }
+
+.yoph-app-menu.open ul {
+    display: block;
+}
+
+.yoph-ai .yoph-app-menu ul {
+    top: auto;
+    bottom: calc(100% + .35rem);
+}
+
+.yoph-app-menu a {
+    display: block;
+    padding: .55rem .65rem;
+    color: var(--yoph-ink);
+    text-decoration: none;
+    font-size: .78rem;
+}
+
+.yoph-app-menu a:hover,
+.yoph-app-menu a[aria-current="page"] {
+    background: var(--yoph-panel);
+}
 
 .yoph-save-state {
-    width: 2rem; height: 2rem; margin-left: auto; display: grid; place-items: center;
-    color: var(--yoph-ink); background: transparent; border: 0; border-radius: 0;
+    width: 2rem;
+    height: 2rem;
+    margin-left: auto;
+    display: grid;
+    place-items: center;
+    color: var(--yoph-ink);
+    background: transparent;
+    border: 0;
+    border-radius: 0;
 }
-.yoph-save-state .material-symbols-outlined { font-size: 1.35rem; line-height: 1; }
-.yoph-save-state.is-saving .material-symbols-outlined { animation: yoph-spin 1s linear infinite; }
-@keyframes yoph-spin { to { transform: rotate(360deg); } }
 
-.yoph-ai-toolbar { position: relative; }
-.yoph-ai-toolbar > .yoph-shared-actions { position: absolute; top: .5rem; right: .75rem; z-index: 1; }
-.yoph-ai-toolbar > .yoph-save-state { position: absolute; top: .5rem; right: 6.75rem; z-index: 1; }
-.yoph-ai-toolbar > #pending-attachments { width: 100%; }
+.yoph-save-state .material-symbols-outlined {
+    font-size: 1.35rem;
+    line-height: 1;
+}
 
-.yoph-home { min-height: 100vh; margin: 0; background: #f8fafc; color: var(--yoph-ink); font-family: Inter, system-ui, sans-serif; }
-.yoph-home header { display: flex; align-items: center; justify-content: space-between; padding: 1.1rem clamp(1rem, 4vw, 3rem); background: #fff; border-bottom: 1px solid var(--yoph-line); }
-.yoph-home h1 { margin: 0; font-size: 1.25rem; letter-spacing: -.02em; }
-.yoph-home main { width: min(920px, calc(100% - 2rem)); margin: 0 auto; padding: clamp(2.5rem, 8vw, 5rem) 0; }
-.yoph-home h2 { margin: 0 0 .45rem; font-size: clamp(1.7rem, 4vw, 2.5rem); letter-spacing: -.04em; }
-.yoph-home p { margin: 0 0 1.6rem; color: var(--yoph-muted); }
-.yoph-tools { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: .75rem; align-items: stretch; }
-.yoph-tool { display: flex; flex-direction: column; justify-content: center; min-height: 92px; padding: 1rem; color: inherit; text-decoration: none; background: #fff; border: 1px solid var(--yoph-line); }
-.yoph-tool:hover { border-color: var(--yoph-accent); }
-.yoph-tool strong { display: block; margin-bottom: .3rem; }
-.yoph-tool small { color: var(--yoph-muted); }
+.yoph-save-state.is-saving .material-symbols-outlined {
+    animation: yoph-spin 1s linear infinite;
+}
 
-@media (max-width: 720px) {
-    .yoph-toolbar-top,
-    .yoph-toolbar-bottom,
-    .yoph-ai-toolbar,
-    .yoph-home header {
-        padding-left: .5rem !important;
-        padding-right: .5rem !important;
-    }
-    .yoph-toolbar-top,
-    .yoph-toolbar-bottom,
-    .yoph-ai-toolbar {
-        justify-content: flex-start;
-    }
-    .yoph-toolbar-controls {
-        width: 100%;
-        justify-content: flex-start;
-    }
-    .yoph-ai-toolbar > .yoph-shared-actions,
-    .yoph-ai-toolbar > .yoph-save-state {
-        position: static;
-        margin-left: 0;
-    }
+@keyframes yoph-spin {
+    to { transform: rotate(360deg); }
+}
+
+.yoph-ai-toolbar {
+    position: relative;
+    background: #e2e8f0 !important;
+}
+
+.yoph-ai-toolbar > .yoph-shared-actions {
+    position: absolute;
+    top: .5rem;
+    right: .75rem;
+    z-index: 1;
+}
+
+.yoph-ai-toolbar > .yoph-save-state {
+    position: absolute;
+    top: .5rem;
+    right: 6.75rem;
+    z-index: 1;
+}
+
+.yoph-toolbar-bottom > .yoph-save-state,
+.yoph-ai-toolbar > .yoph-save-state {
+    margin-left: .35rem;
+}
+
+.yoph-app-menu button[aria-expanded="true"] + ul,
+.yoph-app-menu.open button + ul {
+    display: block;
 }
 
 #prompt-input:focus,
@@ -212,13 +311,12 @@ button:focus-visible, input:focus-visible, textarea:focus-visible, select:focus-
     box-shadow: none;
 }
 
-#prompt-input, #calendar-title-input, #board-title-input, #timeline-title-input, #doc-title-input, #artwork-title-input {
-    border-radius: 0;
-}
-
-#btn-add-file,
-#btn-clear-chat,
-#btn-send {
+#prompt-input,
+#calendar-title-input,
+#board-title-input,
+#timeline-title-input,
+#doc-title-input,
+#artwork-title-input {
     border-radius: 0;
 }
 
@@ -231,346 +329,116 @@ button:focus-visible, input:focus-visible, textarea:focus-visible, select:focus-
     background: #10b981 !important;
 }
 
-#btn-add-file,
-#btn-clear-chat {
-    background: #f8fafc !important;
+.yoph-home {
+    min-height: 100vh;
+    margin: 0;
+    background: #f8fafc;
+    color: var(--yoph-ink);
+}
+
+.yoph-home header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.1rem clamp(1rem, 4vw, 3rem);
+    background: #fff;
+    border-bottom: 1px solid var(--yoph-line);
+}
+
+.yoph-home h1 {
+    margin: 0;
+    font-size: 1.25rem;
+    letter-spacing: -.02em;
+}
+
+.yoph-home main {
+    width: min(920px, calc(100% - 2rem));
+    margin: 0 auto;
+    padding: clamp(2.5rem, 8vw, 5rem) 0;
+}
+
+.yoph-home h2 {
+    margin: 0 0 .45rem;
+    font-size: clamp(1.7rem, 4vw, 2.5rem);
+    letter-spacing: -.04em;
+}
+
+.yoph-home p {
+    margin: 0 0 1.6rem;
+    color: var(--yoph-muted);
+}
+
+.yoph-tools {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+    gap: .75rem;
+    align-items: stretch;
+}
+
+.yoph-tool {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 92px;
+    padding: 1rem;
+    color: inherit;
+    text-decoration: none;
+    background: #fff;
+    border: 1px solid var(--yoph-line);
+}
+
+.yoph-tool:hover {
+    border-color: var(--yoph-accent);
+}
+
+.yoph-tool strong {
+    display: block;
+    margin-bottom: .3rem;
+}
+
+.yoph-tool small {
+    color: var(--yoph-muted);
 }
 
 body .material-symbols-outlined {
     font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
 }
 
-.yoph-ai-toolbar > #pending-attachments + .flex.items-center.gap-2.w-full {
-    margin-top: 0;
-}
-
-footer .flex.items-center.gap-2.w-full {
-    align-items: center;
-}
-
-.yoph-toolbar-bottom .yoph-shared-actions,
-.yoph-ai-toolbar .yoph-shared-actions {
-    display: inline-flex;
-}
-
-.yoph-toolbar-bottom .yoph-save-state,
-.yoph-ai-toolbar .yoph-save-state {
-    background: transparent;
-}
-
-.yoph-toolbar-top .yoph-shared-actions {
-    display: inline-flex;
-    align-items: center;
-}
-
-.yoph-toolbar-top > .yoph-shared-actions {
-    margin-left: .5rem;
-}
-
-.yoph-toolbar-bottom > .yoph-shared-actions,
-.yoph-ai-toolbar > .yoph-shared-actions {
-    margin-left: .5rem;
-}
-
-.yoph-app-menu ul li a {
-    transition: background-color .15s ease;
-}
-
-.yoph-app-menu ul li a[aria-current="page"] {
-    background: #f8fafc;
-    font-weight: 600;
-}
-
-.yoph-toolbar-bottom .material-symbols-outlined,
-.yoph-ai-toolbar .material-symbols-outlined {
-    font-size: 1.2rem;
-}
-
-.yoph-toolbar-top .material-symbols-outlined,
-.yoph-toolbar-bottom .material-symbols-outlined,
-.yoph-ai-toolbar .material-symbols-outlined {
-    font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
-}
-
-.yoph-toolbar-bottom > .yoph-save-state {
-    margin-left: auto;
-}
-
-.yoph-ai-toolbar > .yoph-save-state {
-    right: 7.1rem;
-}
-
-.yoph-toolbar-bottom > .yoph-reset-state,
-.yoph-ai-toolbar > .yoph-reset-state {
-    display: none;
-}
-
-.yoph-toolbar-bottom button,
-.yoph-tool-body header button,
-.yoph-ai-toolbar button {
-    font-size: .72rem;
-    line-height: 1.2;
-}
-
-.yoph-toolbar-bottom input,
-.yoph-toolbar-top input {
-    border-radius: 0;
-} 
-
-.yoph-toolbar-bottom .yoph-app-menu > button,
-.yoph-toolbar-top .yoph-app-menu > button,
-.yoph-ai-toolbar .yoph-app-menu > button {
-    background: var(--yoph-toolbar-strong);
-}
-
-.yoph-toolbar-bottom .yoph-shared-actions button,
-.yoph-toolbar-top .yoph-shared-actions button,
-.yoph-ai-toolbar .yoph-shared-actions button {
-    background: var(--yoph-toolbar-strong);
-}
-
-@media (max-width: 560px) {
-    .yoph-toolbar-controls {
-        gap: .25rem;
-    }
-
-    .yoph-toolbar-top button,
-    .yoph-toolbar-bottom button,
-    .yoph-ai-toolbar button {
-        min-width: 2rem;
-    }
-}
-
-.yoph-toolbar-bottom button[id="btn-clear-chat"],
-.yoph-toolbar-bottom button[id="btn-login"],
-.yoph-toolbar-bottom button[id="btn-create"],
-.yoph-toolbar-bottom button[id="btn-save"],
-.yoph-toolbar-bottom button[id="btn-load"],
-.yoph-toolbar-bottom button[id="btn-save-dropdown"],
-.yoph-toolbar-bottom button[id="btn-load-dropdown"],
-.yoph-toolbar-bottom button[id="btn-clear"] {
-    background: #f8fafc;
-}
-
-.yoph-ai-toolbar > .yoph-save-state {
-    right: 6.25rem;
-}
-
-.yoph-ai-toolbar > .yoph-shared-actions {
-    right: .5rem;
-}
-
-.yoph-tool-body header {
-    align-items: center;
-}
-
-body:not(.yoph-home) .yoph-toolbar-top > .yoph-shared-actions {
-    margin-left: .25rem;
-}
-
-.yoph-toolbar-top .yoph-toolbar-controls > div,
-.yoph-toolbar-top .yoph-toolbar-controls > button,
-.yoph-toolbar-top .yoph-toolbar-controls > input,
-.yoph-toolbar-bottom .yoph-toolbar-controls > div,
-.yoph-toolbar-bottom .yoph-toolbar-controls > button,
-.yoph-toolbar-bottom .yoph-toolbar-controls > input {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.yoph-toolbar-top input[type="text"],
-.yoph-toolbar-bottom input[type="text"],
-.yoph-ai-toolbar input[type="text"] {
-    height: 2rem;
-}
-
-.yoph-toolbar-top .yoph-toolbar-controls > * + *,
-.yoph-toolbar-bottom .yoph-toolbar-controls > * + *,
-.yoph-ai-toolbar .yoph-toolbar-controls > * + * {
-    margin-left: .25rem;
-}
-
-.yoph-toolbar-top > * + *,
-.yoph-toolbar-bottom > * + *,
-.yoph-ai-toolbar > * + * {
-    margin-left: .25rem;
-}
-
-.yoph-tool-body > footer,
-.yoph-tool-body > nav,
-.yoph-tool-body > header {
-    position: relative;
-}
-
-.yoph-ai-toolbar {
-    background: #e2e8f0 !important;
-}
-
-.yoph-ai-toolbar > .yoph-shared-actions {
-    right: .75rem;
-}
-
-footer#pending-attachments {
-    position: static;
-}
-
-.yoph-ai-toolbar .yoph-app-menu {
-    margin-left: 0;
-}
-
-.yoph-ai-toolbar .yoph-save-state {
-    display: grid;
-}
-
-.yoph-toolbar-bottom .yoph-save-state.is-saving,
-.yoph-toolbar-bottom .yoph-save-state:not(.is-saving),
-.yoph-ai-toolbar .yoph-save-state.is-saving,
-.yoph-ai-toolbar .yoph-save-state:not(.is-saving) {
-    border: 0;
-}
-
-.yoph-toolbar-bottom,
-.yoph-ai-toolbar {
-    z-index: 10;
-}
-
-.yoph-tool-body footer,
-.yoph-tool-body nav {
-    min-height: 2.5rem;
-}
-
-.yoph-toolbar-top .yoph-toolbar-controls,
-.yoph-toolbar-bottom .yoph-toolbar-controls,
-.yoph-ai-toolbar .yoph-toolbar-controls {
-    align-items: center;
-}
-
-.yoph-toolbar-top .yoph-toolbar-controls > :nth-child(n),
-.yoph-toolbar-bottom .yoph-toolbar-controls > :nth-child(n),
-.yoph-ai-toolbar .yoph-toolbar-controls > :nth-child(n) {
-    display: inline-flex;
-    align-items: center;
-}
-
-.yoph-toolbar-top button svg,
-.yoph-toolbar-bottom button svg,
-.yoph-ai-toolbar button svg {
-    flex-shrink: 0;
-}
-
 button, .yoph-app-menu a {
     -webkit-tap-highlight-color: transparent;
 }
 
-.yoph-app-menu button[aria-expanded="true"] + ul,
-.yoph-app-menu.open button + ul {
-    display: block;
+@media (max-width: 720px) {
+    .yoph-toolbar-top,
+    .yoph-toolbar-bottom,
+    .yoph-ai-toolbar,
+    .yoph-home header {
+        padding-left: .5rem !important;
+        padding-right: .5rem !important;
+    }
+
+    .yoph-toolbar-top,
+    .yoph-toolbar-bottom,
+    .yoph-ai-toolbar {
+        justify-content: flex-start;
+    }
+
+    .yoph-toolbar-controls {
+        width: 100%;
+        justify-content: flex-start;
+    }
+
+    .yoph-ai-toolbar > .yoph-shared-actions,
+    .yoph-ai-toolbar > .yoph-save-state {
+        position: static;
+        margin-left: 0;
+    }
 }
 
 @media (prefers-reduced-motion: reduce) {
-    *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
-}
-
-/* Shared Yoph interface layer */
-:root {
-    --yoph-ink: #1e293b;
-    --yoph-muted: #64748b;
-    --yoph-line: #cbd5e1;
-    --yoph-panel: #f1f5f9;
-    --yoph-toolbar: #e2e8f0;
-    --yoph-accent: #059669;
-}
-
-html, body { min-width: 320px; font-family: Inter, system-ui, sans-serif !important; }
-button, input, textarea, select { font: inherit; }
-button:focus-visible, input:focus-visible, textarea:focus-visible, select:focus-visible, [contenteditable="true"]:focus-visible {
-    outline: 2px solid var(--yoph-accent);
-    outline-offset: 1px;
-}
-.yoph-toolbar-top { position: relative !important; }
-.yoph-app-menu { position: relative; margin-left: .35rem; }
-.yoph-app-menu > button {
-    width: 2rem !important; height: 2rem !important; display: grid; place-items: center;
-    padding: 0 !important;
-    color: var(--yoph-ink); background: #fff; border: 1px solid var(--yoph-line);
-    cursor: pointer;
-}
-.yoph-grid { display: grid; grid-template-columns: repeat(3, 4px); gap: 3px; }
-.yoph-grid i { width: 4px; height: 4px; background: currentColor; display: block; }
-.yoph-app-menu ul {
-    position: absolute; right: 0; top: calc(100% + .35rem); z-index: 100;
-    display: none; width: 190px; margin: 0; padding: .35rem;
-    list-style: none; background: #fff; border: 1px solid var(--yoph-line);
-    box-shadow: none;
-}
-.yoph-app-menu.open ul { display: block; }
-.yoph-home .yoph-app-menu { margin-top: 0; }
-.yoph-home .yoph-app-menu ul { top: calc(100% + .35rem); }
-.yoph-home .yoph-app-menu:hover ul { display: block; }
-.yoph-ai .yoph-app-menu ul { top: auto; bottom: calc(100% + .35rem); }
-.yoph-app-menu a { display: block; padding: .55rem .65rem; color: var(--yoph-ink); text-decoration: none; font-size: .78rem; }
-.yoph-app-menu a:hover, .yoph-app-menu a[aria-current="page"] { background: var(--yoph-panel); }
-.yoph-shared-actions { display: inline-flex; align-items: center; gap: .35rem; margin-left: .35rem; }
-.yoph-shared-actions button { height: 2rem !important; min-height: 2rem !important; padding: 0 .65rem; background: var(--yoph-panel); border: 1px solid var(--yoph-line); color: var(--yoph-ink); font-size: .72rem; cursor: pointer; }
-.yoph-shared-actions button:hover { background: var(--yoph-panel); }
-.yoph-shared-actions .yoph-app-menu { margin-left: .1rem; }
-.yoph-shared-actions .yoph-app-menu > button { background: var(--yoph-panel); }
-.yoph-shared-actions .yoph-app-menu > button:hover { background: #e2e8f0; }
-.yoph-home { min-height: 100vh; margin: 0; background: #f8fafc; color: var(--yoph-ink); font-family: Inter, system-ui, sans-serif; }
-.yoph-home header { display: flex; align-items: center; justify-content: space-between; padding: 1.1rem clamp(1rem, 4vw, 3rem); background: #fff; border-bottom: 1px solid var(--yoph-line); }
-.yoph-home h1 { margin: 0; font-size: 1.25rem; letter-spacing: -.02em; }
-.yoph-home main { width: min(920px, calc(100% - 2rem)); margin: 0 auto; padding: clamp(2.5rem, 8vw, 5rem) 0; }
-.yoph-home h2 { margin: 0 0 .45rem; font-size: clamp(1.7rem, 4vw, 2.5rem); letter-spacing: -.04em; }
-.yoph-home p { margin: 0 0 1.6rem; color: var(--yoph-muted); }
-.yoph-tools { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: .75rem; align-items: stretch; }
-.yoph-tool { display: flex; flex-direction: column; justify-content: center; min-height: 92px; padding: 1rem; color: inherit; text-decoration: none; background: #fff; border: 1px solid var(--yoph-line); }
-.yoph-tool:hover { border-color: var(--yoph-accent); }
-.yoph-tool strong { display: block; margin-bottom: .3rem; }
-.yoph-tool small { color: var(--yoph-muted); }
-
-.yoph-tool-body { min-height: 100vh; display: flex; flex-direction: column; }
-.yoph-toolbar-top, .yoph-toolbar-bottom {
-    box-sizing: border-box; width: 100%; flex-shrink: 0; gap: .5rem;
-    padding: .5rem .75rem !important; border: 0 !important; box-shadow: none !important;
-}
-.yoph-toolbar-top { min-height: 2.5rem; background: #fff !important; color: var(--yoph-ink); }
-.yoph-toolbar-bottom { min-height: 2.5rem; display: flex; align-items: center; background: var(--yoph-toolbar) !important; color: var(--yoph-ink); border-bottom: 1px solid var(--yoph-line) !important; }
-.yoph-toolbar-top > div:first-child { margin-right: auto; }
-.yoph-toolbar-controls { display: flex; align-items: center; justify-content: flex-end; gap: .35rem; flex-wrap: wrap; }
-.yoph-toolbar-bottom > .yoph-toolbar-controls { margin-left: auto; }
-.yoph-tool-body > #canvas-container, .yoph-tool-body > #view-container { flex: 1 1 auto; min-height: 0; }
-.yoph-toolbar-top button, .yoph-toolbar-top input, .yoph-toolbar-bottom button, .yoph-toolbar-bottom input,
-.yoph-toolbar-top select, .yoph-toolbar-bottom select { height: 2rem !important; min-height: 2rem !important; box-sizing: border-box; border-radius: 0 !important; box-shadow: none !important; }
-.yoph-toolbar-top button { background: #e2e8f0; border: 1px solid #cbd5e1; color: var(--yoph-ink); }
-.yoph-toolbar-top button:hover { background: #cbd5e1; }
-.yoph-toolbar-top .yoph-toolbar-controls > :has(#btn-clear, #btn-undo, #btn-redo) { order: 2; }
-.yoph-toolbar-top .yoph-toolbar-controls > :has(#btn-save, #btn-load, #btn-save-dropdown, #btn-load-dropdown, #btn-load-img, #file-input) { order: 1; }
-.yoph-toolbar-top .yoph-shared-actions { order: 3; }
-.yoph-toolbar-bottom button { background: #f8fafc; border: 1px solid #cbd5e1; color: var(--yoph-ink); }
-.yoph-toolbar-bottom button:hover { background: #cbd5e1; }
-.yoph-toolbar-bottom .bg-emerald-600, .yoph-toolbar-bottom .bg-emerald-700 { background: #059669 !important; border-color: #047857 !important; color: #fff !important; }
-.yoph-toolbar-bottom .h-5, .yoph-toolbar-bottom .h-6 { height: 1.5rem; background: #cbd5e1 !important; margin: 0 .35rem; }
-.yoph-toolbar-bottom > .yoph-toolbar-controls > * + * { border-left-color: #cbd5e1; }
-.yoph-shared-actions { margin-left: .35rem; }
-.yoph-shared-actions button { display: inline-grid; place-items: center; width: 2rem; padding: 0 !important; }
-.yoph-shared-actions svg { width: 1rem; height: 1rem; fill: none; stroke: currentColor; stroke-width: 2; }
-.yoph-app-menu > button { background: #e2e8f0 !important; }
-.yoph-save-state { width: 2rem; height: 2rem; margin-left: auto; display: grid; place-items: center; color: #fff; }
-.yoph-toolbar-bottom .yoph-save-state { color: var(--yoph-ink); }
-.yoph-save-state .material-symbols-outlined { font-size: 1.35rem; line-height: 1; }
-.yoph-save-state.is-saving .material-symbols-outlined { animation: yoph-spin 1s linear infinite; }
-@keyframes yoph-spin { to { transform: rotate(360deg); } }
-.yoph-ai-toolbar { position: relative; }
-.yoph-ai-toolbar > .yoph-shared-actions { position: absolute; top: .5rem; right: .75rem; z-index: 1; }
-.yoph-ai-toolbar > .yoph-save-state { position: absolute; top: .5rem; right: 7.25rem; z-index: 1; }
-.yoph-ai-toolbar > #pending-attachments { padding-
-.yoph-ai-toolbar > div:last-of-type { padding-right: 8rem; }
-header button, footer button { height: 2rem !important; min-height: 2rem !important; box-shadow: none !important; }
-header, footer { box-shadow: none !important; }
-@media (max-width: 700px) {
-    .yoph-toolbar-top, .yoph-toolbar-bottom { align-items: stretch; flex-wrap: wrap; }
-    .yoph-toolbar-top > div:first-child { width: 100%; }
-    .yoph-toolbar-top input { max-width: 100%; width: 100%; }
-    .yoph-toolbar-controls { justify-content: flex-start; }
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
 }
