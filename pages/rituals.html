@@ -1,0 +1,27 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Repeat a gesture until it becomes somewhere else.">
+  <title>Small Rituals / Yoph</title>
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body class="handmade-rituals" style="--glow:#ffab52;--hot:#ff6c92;--acid:#bcff94">
+  <header class="sitebar wrap"><a class="brand" href="../index.html">yo<span>ph</span></a><span class="signal">small rituals / no certification</span></header>
+  <main class="wrap ritual-page">
+    <section class="ritual-heading"><p class="eyebrow">handmade practice / 07</p><h1>Small rituals for large-ish feelings.</h1><p class="lede">Choose one. Do not improve it. The ritual becomes more powerful when nobody is trying to monetize the result.</p></section>
+    <section class="ritual-list" aria-label="Small ritual checklist">
+      <button class="ritual" type="button"><span class="number">01</span><span><strong>Put the important object slightly to the left.</strong><small>Notice how the room makes space for it.</small></span><i>not yet</i></button>
+      <button class="ritual" type="button"><span class="number">02</span><span><strong>Write one sentence and refuse to explain it.</strong><small>Let the sentence keep its little coat on.</small></span><i>not yet</i></button>
+      <button class="ritual" type="button"><span class="number">03</span><span><strong>Open a window for a thought, not a person.</strong><small>Fresh air is allowed to be metaphorical.</small></span><i>not yet</i></button>
+      <button class="ritual" type="button"><span class="number">04</span><span><strong>Thank the chair before you leave the room.</strong><small>It has been holding more than furniture should.</small></span><i>not yet</i></button>
+    </section>
+    <section class="ritual-result panel"><p class="eyebrow">ceremony readout</p><h2 id="result">Nothing has been completed.</h2><p id="counter">0 of 4 gestures acknowledged</p><button class="btn" id="reset">return all gestures to mystery</button></section>
+    <nav class="handmade-nav"><a href="room-02.html">← sit in Room 02</a><a href="timeline.html">continue to the timeline →</a></nav>
+  </main>
+  <footer class="wrap"><a href="../pages/quiet-mode.html">quiet mode</a> · <a href="../index.html">return almost home</a></footer>
+  <script src="../script.js"></script>
+  <script>const rituals=[...document.querySelectorAll('.ritual')],result=document.querySelector('#result'),counter=document.querySelector('#counter'),reset=document.querySelector('#reset');function update(){const done=rituals.filter(item=>item.classList.contains('done')).length;counter.textContent=done+' of 4 gestures acknowledged';result.textContent=done===4?'the room has accepted the offering':done?'something small has shifted':'Nothing has been completed.'}rituals.forEach(item=>item.addEventListener('click',()=>{item.classList.toggle('done');item.querySelector('i').textContent=item.classList.contains('done')?'accepted':'not yet';update()}));reset.addEventListener('click',()=>{rituals.forEach(item=>{item.classList.remove('done');item.querySelector('i').textContent='not yet'});update()});</script>
+</body>
+</html>

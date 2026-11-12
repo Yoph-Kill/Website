@@ -1,0 +1,36 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="There is a chair, but the chair is thinking.">
+  <title>Room 02 / Yoph</title>
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body class="handmade-room" style="--glow:#ff8e5e;--hot:#777bff;--acid:#ecff7c">
+  <header class="sitebar wrap"><a class="brand" href="../index.html">yo<span>ph</span></a><span class="signal">room 02 / occupied by an idea</span></header>
+  <main class="wrap room-layout">
+    <section class="room-intro">
+      <p class="eyebrow">handmade room / 02</p>
+      <h1>There is a chair, but the chair is thinking.</h1>
+      <p class="lede">Please enter without solving anything. The room has already made arrangements for your uncertainty.</p>
+      <div class="actions"><button class="btn primary" id="light">turn on the small light</button><a class="btn" href="room-01.html">visit the previous room</a></div>
+      <p class="status" id="room-status">the lamp is considering it</p>
+    </section>
+    <section class="room-scene" id="scene" aria-label="A quiet illustrated room">
+      <div class="window"><span>weather outside: undecided</span></div>
+      <div class="chair" aria-hidden="true"><div class="chair-back"></div><div class="chair-seat"></div><div class="chair-leg left"></div><div class="chair-leg right"></div></div>
+      <div class="lamp" aria-hidden="true"><div class="shade"></div><div class="stem"></div><div class="foot"></div></div>
+      <p class="room-note">the chair says: sit down, but keep one thought standing</p>
+    </section>
+    <section class="room-notes grid">
+      <article class="panel"><p class="eyebrow">inventory</p><h3>One chair</h3><p>It has no cushions because cushions encourage conclusions. Its posture is excellent.</p></article>
+      <article class="panel"><p class="eyebrow">instruction</p><h3>Leave a little silence</h3><p>Silence is the only object in this room that does not need to be moved before it becomes useful.</p></article>
+      <article class="panel"><p class="eyebrow">exit</p><h3>Choose a softer door</h3><p><a href="rituals.html">try a small ritual →</a><br><a href="mirror.html">look next door →</a></p></article>
+    </section>
+  </main>
+  <footer class="wrap"><a href="../weather.html">check the outside</a> · <a href="../index.html">return almost home</a></footer>
+  <script src="../script.js"></script>
+  <script>const scene=document.querySelector('#scene'),button=document.querySelector('#light'),status=document.querySelector('#room-status');button.addEventListener('click',()=>{scene.classList.toggle('lit');const on=scene.classList.contains('lit');button.textContent=on?'turn the small light off':'turn on the small light';status.textContent=on?'the chair has begun to think out loud':'the lamp is considering it'});</script>
+</body>
+</html>
